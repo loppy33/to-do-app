@@ -1,0 +1,88 @@
+*{
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+.intro {
+    margin: 0;
+    height: 100%;
+    position: static !important;
+
+}
+
+form{
+    position: absolute;
+
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: rgba(240, 249, 255, 0.493);
+    width: 350px;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+}
+
+
+ol {
+    text-align: left;
+    counter-reset: myCounter;
+    color: rgb(255, 255, 255);
+    text-decoration: rgba(9, 7, 26, 0.199) wavy underline;
+    
+}
+
+li{
+    list-style: none;
+    line-height: 20px;
+    margin: 0 0 5px 0;
+}
+  
+li:before {
+    counter-increment: myCounter;
+    content: counter(myCounter);
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    text-align: center;
+    line-height: normal;
+    height: auto;
+    width: auto;
+    margin: 0 5px 0 0;
+    background-color: rgba(3, 21, 73, 0.678);
+    padding: 2px 6px;
+}
+
+
+button {
+    cursor: pointer;
+    border: none;
+
+    border-radius: 3px;
+    background-color: #ddd;
+    padding: 3px 11px;
+
+    margin: 3px;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #fff;
+}
+
+input {
+    border: none;
+    border-radius: 3px;
+    padding: 3px;
+    outline: none;
+}
+
+/* .delete {
+    background-color: none !important;
+} */
