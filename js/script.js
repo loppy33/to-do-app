@@ -7,6 +7,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            modalClassList: 'modal',
             text: '',
             items: [
                 {
@@ -42,7 +43,7 @@ class App extends React.Component {
                 items: currentItems,
                 text: ''
             }
-            
+
         })
     }
 
@@ -52,31 +53,48 @@ class App extends React.Component {
 
     handleRemove(id) {
         console.log(id)
-        this.setState(function(state) {
+        this.setState(function (state) {
             let currentItems = state.items
             currentItems.splice(id, 1)
-            
+
             return {
                 items: currentItems
             }
 
         })
-    
+    }
+
+    handleEdit(id) {
+        this.setState({
+            modalClassList: 'modal modalShow'
+        })
     }
 
     render() {
-        return <form className='userForm' id='userForm' onSubmit={(e) => this.handleSubmit(e)}>
-            <ol>
-                {
-                    this.state.items.map((item, id) => (
-                        <li key={item.id}>{item.text} <button type='button' onClick= {() => this.handleRemove(id)} className='delete' style = {{backgroundColor: 'none' + ' !important'}}>🗑️</button></li>
-                    ))
-                }
-            </ol>
-            <input placeholder="Введите дело" type="text" onChange={(e) => this.setState({ text: e.target.value })} value={this.state.text} />
-            <button disabled={this.state.text.length > 0 ? (this.state.text.length < 15 ? false : true) :  true}>Добавить</button>
-            <button disabled={this.state.items.length > 0 ? false : true} type='button' onClick={() => this.handleClear()} >Очистить</button>
-        </form>
+        return (
+            <div>
+                <div className={this.state.modalClassList}>
+                    <form action="">
+                        <h1>Edit</h1>
+                        <input type="text" placeholder='Введите новое дело'/>
+                        <button>Редактировать</button>
+                    </form>
+                </div>
+                <form className='userForm' id='userForm' onSubmit={(e) => this.handleSubmit(e)}>
+                    <ol>
+                        {
+                            this.state.items.map((item, id) => (
+                                <li key={item.id}>{item.text} <button type='button' onClick={() => this.handleRemove(id)} className='delete' style={{ backgroundColor: 'none' + ' !important' }}>🗑️</button><button type='button' onClick={() => this.handleEdit(id)} className='edit'>✏️</button></li>
+                            ))
+                        }
+                    </ol>
+                    <input placeholder="Введите дело" type="text" onChange={(e) => this.setState({ text: e.target.value })} value={this.state.text} />
+                    <button disabled={this.state.text.length > 0 ? (this.state.text.length < 15 ? false : true) : true}>Добавить</button>
+                    <button disabled={this.state.items.length > 0 ? false : true} type='button' onClick={() => this.handleClear()} >Очистить</button>
+                </form>
+            </div>
+        )
+
     }
 }
 

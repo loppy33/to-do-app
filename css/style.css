@@ -7,13 +7,14 @@
 
 html {
     height: 100%;
+    background-color: lightblue;
 }
 
 .intro {
     margin: 0;
     height: 100%;
     position: static !important;
-
+    
 }
 
 form{
@@ -35,8 +36,6 @@ ol {
     text-align: left;
     counter-reset: myCounter;
     color: rgb(255, 255, 255);
-    text-decoration: rgba(9, 7, 26, 0.199) wavy underline;
-    
 }
 
 li{
@@ -83,6 +82,15 @@ input {
     outline: none;
 }
 
-/* .delete {
-    background-color: none !important;
-} */
+.modal {
+    transform: translateY(-100%);
+    z-index: 10;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.507);
+    width: 100%;
+    height: 100%;
+}
+
+.modalShow {
+    transform: none;
+}
