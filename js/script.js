@@ -9,6 +9,8 @@ class App extends React.Component {
         this.state = {
             modalClassList: 'modal',
             text: '',
+            editedText: '',
+            buttonClassList: '',
             items: [
                 {
                     text: 'Погулять',
@@ -24,7 +26,8 @@ class App extends React.Component {
                     text: 'Пойти в кино',
                     id: '345325342342542356',
                 },
-            ]
+            ],
+            editedItemId: null
         }
     }
 
@@ -66,7 +69,17 @@ class App extends React.Component {
 
     handleEdit(id) {
         this.setState({
-            modalClassList: 'modal modalShow'
+            modalClassList: 'modal modalShow',
+            editedItemId: id,
+        })
+    }
+
+    submitEdit(id) {
+        let element = this.state.items[id]
+        element.text = this.state.editedText
+        
+        this.setState({
+            modalClassList: 'modal'
         })
     }
 
@@ -76,8 +89,8 @@ class App extends React.Component {
                 <div className={this.state.modalClassList}>
                     <form action="">
                         <h1>Edit</h1>
-                        <input type="text" placeholder='Введите новое дело'/>
-                        <button>Редактировать</button>
+                        <input type="text" placeholder='Введите новое дело' onChange={(e) => this.setState({ editedText: e.target.value })} value={this.state.editedText} />
+                        <button style={{ cursor: this.state.editedText > 15 ? (this.state.editedText < 0 ? 'not-allowed' : 'pointer' ) : 'not-allowed'}} type='button' onClick={() => this.submitEdit(this.state.editedItemId)} disabled={this.state.editedText.length > 0 ? (this.state.editedText.length < 15 ? false : true) : true}>Редактировать</button>
                     </form>
                 </div>
                 <form className='userForm' id='userForm' onSubmit={(e) => this.handleSubmit(e)}>
@@ -89,7 +102,7 @@ class App extends React.Component {
                         }
                     </ol>
                     <input placeholder="Введите дело" type="text" onChange={(e) => this.setState({ text: e.target.value })} value={this.state.text} />
-                    <button disabled={this.state.text.length > 0 ? (this.state.text.length < 15 ? false : true) : true}>Добавить</button>
+                    <button style={{ cursor: this.state.editedText > 15 ? (this.state.editedText < 0 ? 'not-allowed' : 'pointer' ) : 'not-allowed'}} disabled={this.state.text.length > 0 ? (this.state.text.length < 15 ? false : true) : true}>Добавить</button>
                     <button disabled={this.state.items.length > 0 ? false : true} type='button' onClick={() => this.handleClear()} >Очистить</button>
                 </form>
             </div>
