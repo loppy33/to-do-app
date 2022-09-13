@@ -103,8 +103,8 @@ class App extends React.Component {
                         }
                     </ol>
                     <input placeholder="Введите дело" type="text" onChange={(e) => this.setState({ text: e.target.value })} value={this.state.text} />
-                    <button style={{ cursor: this.state.text.length > 15 ? 'not-allowed' : (this.state.text.length == 0 ? 'not-allowed' : 'pointer' )}} disabled={this.state.text.length > 0 ? (this.state.text.length < 15 ? false : true) : true}>Добавить</button>
                     <button disabled={this.state.items.length > 0 ? false : true} type='button' onClick={() => this.handleClear()} >Очистить</button>
+                    <button style={{ cursor: this.state.text.length > 15 ? 'not-allowed' : (this.state.text.length == 0 ? 'not-allowed' : 'pointer' )}} disabled={this.state.text.length > 0 ? (this.state.text.length < 15 ? false : true) : true}>Добавить</button>
                 </form>
             </div>
         )
